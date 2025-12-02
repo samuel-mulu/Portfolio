@@ -33,7 +33,7 @@ export const mockLandingContent = {
       label: "Phone",
     },
   ], // Store as array
-  image_path: "/images/portfolio-image.png",
+  image_path: "/images/portfolio-image.jpg",
   cv_path: "/cv/samuel_mulu.pdf",
 };
 
@@ -47,7 +47,7 @@ export const mockAboutData = {
     "With expertise in modern JavaScript frameworks and backend technologies, I bring ideas to life through clean, efficient code.",
     "I love solving complex problems and building scalable applications that make a difference.",
   ], // Store as array
-  image_path: "/images/about-image.jpeg",
+  image_path: "/images/about-image.png",
   details: {
     age: 30,
     location: "Ethiopia",
