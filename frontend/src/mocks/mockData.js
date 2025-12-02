@@ -33,7 +33,7 @@ export const mockLandingContent = {
       label: "Phone",
     },
   ], // Store as array
-  image_path: "/images/portfolio-image.jpg",
+  image_path: "/images/portfolio-image.png",
   cv_path: "/cv/samuel_mulu.pdf",
 };
 
