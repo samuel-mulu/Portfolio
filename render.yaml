@@ -1,0 +1,36 @@
+# NOTE: This render.yaml is for Laravel backend deployment on Render.com
+# The Laravel backend is in a separate repository and should be deployed independently
+# This file is kept for reference but is not used by the frontend project in this workspace
+#
+# To use this configuration:
+# 1. Ensure Laravel backend code is present in the workspace
+# 2. Update paths and configuration as needed
+# 3. Or remove this file if backend is deployed separately
+
+services:
+  - type: web
+    name: laravel-backend
+    env: docker
+    dockerfilePath: ./Dockerfile
+    buildCommand: |
+      apt-get update
+      apt-get install -y php-cli php-mbstring php-xml php-bcmath php-curl unzip && 
+      curl -sS https://getcomposer.org/installer | php
+      mv composer.phar /usr/local/bin/composer
+      composer install --optimize-autoloader --no-dev
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+      php artisan storage:link
+    startCommand: "php artisan serve --host=0.0.0.0 --port=$PORT"
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: base64:Dhmzs3/sfl9kwyF4zhfmTWWjJMZjai6f6B+XevFLimk=
+      - key: DB_HOST
+        value: db.dpg-ctb9jll2ng1s73dqr0hg-a.render.com
+      - key: DB_DATABASE
+        value: portfolio
+      - key: DB_USERNAME
+        value: amde
