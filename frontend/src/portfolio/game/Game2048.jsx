@@ -373,44 +373,65 @@ const Game2048 = () => {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [gameState, moveTiles]);
 
-  // Touch/swipe controls
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-
+  // Touch/swipe controls - use refs to avoid closure issues
+  const touchStartRef = useRef(null);
   const minSwipeDistance = 50;
 
   const onTouchStart = (e) => {
-    setTouchEnd(null);
-    const touchX = e.targetTouches[0].clientX;
-    const touchY = e.targetTouches[0].clientY;
-    setTouchStart({ x: touchX, y: touchY });
+    e.preventDefault();
+    const touch = e.targetTouches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
   };
 
   const onTouchMove = (e) => {
-    const touchX = e.targetTouches[0].clientX;
-    const touchY = e.targetTouches[0].clientY;
-    setTouchEnd({ x: touchX, y: touchY });
+    e.preventDefault();
   };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distanceX = touchEnd.x - touchStart.x;
-    const distanceY = touchEnd.y - touchStart.y;
+  const onTouchEnd = (e) => {
+    e.preventDefault();
+    if (!touchStartRef.current) return;
+    
+    const touch = e.changedTouches[0];
+    const touchEnd = { x: touch.clientX, y: touch.clientY };
+    const distanceX = touchEnd.x - touchStartRef.current.x;
+    const distanceY = touchEnd.y - touchStartRef.current.y;
+    const absX = Math.abs(distanceX);
+    const absY = Math.abs(distanceY);
+    
+    // Check if it's a tap (small movement) or a swipe
+    if (Math.max(absX, absY) < minSwipeDistance) {
+      // It's a tap - start game if ready, restart if gameover
+      if (gameState === "ready") {
+        setGameState("playing");
+      } else if (gameState === "gameover") {
+        restartGame();
+      }
+      touchStartRef.current = null;
+      return;
+    }
+    
     const isLeftSwipe = distanceX < -minSwipeDistance;
     const isRightSwipe = distanceX > minSwipeDistance;
     const isUpSwipe = distanceY < -minSwipeDistance;
     const isDownSwipe = distanceY > minSwipeDistance;
 
     if (gameState === "playing") {
-      if (isLeftSwipe) moveTiles("left");
-      if (isRightSwipe) moveTiles("right");
-      if (isUpSwipe) moveTiles("up");
-      if (isDownSwipe) moveTiles("down");
+      if (absX > absY) {
+        // Horizontal swipe
+        if (isLeftSwipe) moveTiles("left");
+        if (isRightSwipe) moveTiles("right");
+      } else {
+        // Vertical swipe
+        if (isUpSwipe) moveTiles("up");
+        if (isDownSwipe) moveTiles("down");
+      }
     } else if (gameState === "ready") {
       setGameState("playing");
     } else if (gameState === "gameover") {
       restartGame();
     }
+    
+    touchStartRef.current = null;
   };
 
   // Restart game
@@ -473,9 +494,10 @@ const Game2048 = () => {
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          className="cursor-pointer rounded-xl"
+          className="cursor-pointer rounded-xl touch-none"
           style={{
             width: "100%",
+            touchAction: "none",
             maxWidth: "400px",
             height: "500px",
             display: "block",

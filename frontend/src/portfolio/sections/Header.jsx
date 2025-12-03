@@ -74,9 +74,6 @@ export default Header;
 const NavItems = ({ activeLink }) => {
   const navLinks = [
     { href: "#home", label: "Home", icon: "home" },
-    { href: "#about", label: "About", icon: "user" },
-    { href: "#skills", label: "Skills", icon: "cogs" },
-    { href: "#education", label: "Education", icon: "graduation-cap" },
     { href: "#experience", label: "Experience", icon: "briefcase" },
     { href: "#projects", label: "Projects", icon: "project-diagram" },
     { href: "#contact", label: "Contact", icon: "envelope" },

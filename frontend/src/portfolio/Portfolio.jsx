@@ -6,6 +6,7 @@ import Skills from "./sections/Skills";
 import Projects from "./sections/Projects";
 import Experience from "./sections/Experience";
 import Education from "./sections/Education";
+import Testimonials from "./sections/Testimonials";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import { useEffect, useState } from "react";
@@ -26,6 +27,7 @@ const Portfolio = () => {
       <EducationSection />
       <ExperienceSection />
       <Projects />
+      <Testimonials />
       <Contact />
       {/* </main> */}
       <Footer referenceIcons={contentData?.reference_icons} />

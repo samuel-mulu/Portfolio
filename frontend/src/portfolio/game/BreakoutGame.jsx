@@ -465,8 +465,9 @@ const BreakoutGame = () => {
       <div className="relative bg-cream-100 dark:bg-gray-800 rounded-2xl shadow-2xl p-4 border-2 border-green-200 dark:border-gray-700">
         <canvas
           ref={canvasRef}
-          className="rounded-xl cursor-none"
+          className="rounded-xl cursor-none touch-none"
           style={{
+            touchAction: "none",
             width: "100%",
             maxWidth: "600px",
             height: "500px",

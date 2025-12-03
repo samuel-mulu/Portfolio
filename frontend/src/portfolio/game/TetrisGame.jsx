@@ -433,6 +433,16 @@ const TetrisGame = () => {
     setGameState("playing");
   }, []);
 
+  // Handle canvas touch for start/restart
+  const handleCanvasTouch = (e) => {
+    e.preventDefault();
+    if (gameState === "ready") {
+      setGameState("playing");
+    } else if (gameState === "gameover") {
+      restartGame();
+    }
+  };
+
   // Prevent scrolling on touch
   useEffect(() => {
     const preventScroll = (e) => {
@@ -468,12 +478,14 @@ const TetrisGame = () => {
       <div className="relative bg-cream-100 dark:bg-gray-800 rounded-2xl shadow-2xl p-4 border-2 border-green-200 dark:border-gray-700">
         <canvas
           ref={canvasRef}
-          className="rounded-xl"
+          onTouchStart={handleCanvasTouch}
+          className="rounded-xl touch-none"
           style={{
             width: "100%",
             maxWidth: "300px",
             height: "600px",
             display: "block",
+            touchAction: "none",
           }}
         />
 

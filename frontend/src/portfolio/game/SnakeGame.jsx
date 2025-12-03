@@ -304,35 +304,64 @@ const SnakeGame = () => {
     setGameState("playing");
   }, [generateFood]);
 
-  // Touch controls for mobile
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
-
+  // Touch controls for mobile - use refs to avoid closure issues
+  const touchStartRef = useRef(null);
   const minSwipeDistance = 50;
 
   const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    e.preventDefault();
+    const touch = e.targetTouches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
   };
 
   const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    e.preventDefault();
   };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+  const onTouchEnd = (e) => {
+    e.preventDefault();
+    if (!touchStartRef.current) return;
+    
+    const touch = e.changedTouches[0];
+    const touchEnd = { x: touch.clientX, y: touch.clientY };
+    const distanceX = touchEnd.x - touchStartRef.current.x;
+    const distanceY = touchEnd.y - touchStartRef.current.y;
+    
+    const absX = Math.abs(distanceX);
+    const absY = Math.abs(distanceY);
+    
+    // Only process if swipe is significant and primarily horizontal or vertical
+    if (Math.max(absX, absY) < minSwipeDistance) {
+      // If it's a tap, start the game if ready
+      if (gameState === "ready") {
+        setGameState("playing");
+        generateFood();
+      } else if (gameState === "gameover") {
+        restartGame();
+      }
+      touchStartRef.current = null;
+      return;
+    }
 
     if (gameState === "playing") {
-      if (isLeftSwipe) {
-        changeDirection({ x: -1, y: 0 }); // Left
-      }
-      if (isRightSwipe) {
-        changeDirection({ x: 1, y: 0 }); // Right
+      if (absX > absY) {
+        // Horizontal swipe
+        if (distanceX < -minSwipeDistance) {
+          changeDirection({ x: -1, y: 0 }); // Left
+        } else if (distanceX > minSwipeDistance) {
+          changeDirection({ x: 1, y: 0 }); // Right
+        }
+      } else {
+        // Vertical swipe
+        if (distanceY < -minSwipeDistance) {
+          changeDirection({ x: 0, y: -1 }); // Up
+        } else if (distanceY > minSwipeDistance) {
+          changeDirection({ x: 0, y: 1 }); // Down
+        }
       }
     }
+    
+    touchStartRef.current = null;
   };
 
   // Handle canvas click for mobile start
@@ -387,12 +416,13 @@ const SnakeGame = () => {
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          className="cursor-pointer rounded-xl"
+          className="cursor-pointer rounded-xl touch-none"
           style={{
             width: "100%",
             maxWidth: "600px",
             height: "600px",
             display: "block",
+            touchAction: "none",
           }}
         />
 

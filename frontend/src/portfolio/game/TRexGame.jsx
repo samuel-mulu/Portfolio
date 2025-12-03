@@ -277,6 +277,12 @@ const TRexGame = () => {
     }
   };
 
+  // Handle touch events for mobile
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    handleCanvasClick(e);
+  };
+
   // Prevent scrolling on touch
   useEffect(() => {
     const preventScroll = (e) => {
@@ -315,12 +321,14 @@ const TRexGame = () => {
         <canvas
           ref={canvasRef}
           onClick={handleCanvasClick}
-          className="cursor-pointer rounded-xl"
+          onTouchStart={handleTouchStart}
+          className="cursor-pointer rounded-xl touch-none"
           style={{
             width: "100%",
             maxWidth: "800px",
             height: "400px",
             display: "block",
+            touchAction: "none",
           }}
         />
 

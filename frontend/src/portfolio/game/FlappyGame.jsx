@@ -362,6 +362,12 @@ const FlappyGame = () => {
     }
   };
 
+  // Handle touch events for mobile
+  const handleTouchStart = (e) => {
+    e.preventDefault();
+    handleCanvasClick(e);
+  };
+
   // Prevent scrolling on touch
   useEffect(() => {
     const preventScroll = (e) => {
@@ -400,12 +406,14 @@ const FlappyGame = () => {
         <canvas
           ref={canvasRef}
           onClick={handleCanvasClick}
-          className="cursor-pointer rounded-xl"
+          onTouchStart={handleTouchStart}
+          className="cursor-pointer rounded-xl touch-none"
           style={{
             width: "100%",
             maxWidth: "400px",
             height: "600px",
             display: "block",
+            touchAction: "none",
           }}
         />
 
