@@ -433,6 +433,17 @@ const TetrisGame = () => {
     setGameState("playing");
   }, []);
 
+  // Prevent scrolling on touch
+  useEffect(() => {
+    const preventScroll = (e) => {
+      if (gameState === "playing") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    return () => document.removeEventListener("touchmove", preventScroll);
+  }, [gameState]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 flex flex-col items-center justify-center p-4">
       <div className="mb-6 text-center">
@@ -509,9 +520,62 @@ const TetrisGame = () => {
         )}
       </div>
 
+      {/* Mobile Touch Controls */}
+      {gameState === "playing" && (
+        <div className="mt-6 w-full max-w-md">
+          <div className="grid grid-cols-3 gap-3 mb-3">
+            <div></div>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                handleRotate();
+              }}
+              className="py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="rotate" className="text-xl" />
+            </motion.button>
+            <div></div>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                movePiece(-1, 0);
+              }}
+              onTouchEnd={(e) => e.preventDefault()}
+              className="py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-left" className="text-2xl" />
+            </motion.button>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                movePiece(0, 1);
+              }}
+              onTouchEnd={(e) => e.preventDefault()}
+              className="py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-down" className="text-2xl" />
+            </motion.button>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                movePiece(1, 0);
+              }}
+              onTouchEnd={(e) => e.preventDefault()}
+              className="py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-right" className="text-2xl" />
+            </motion.button>
+          </div>
+        </div>
+      )}
+
       <div className="mt-6 max-w-md text-center text-smokey-600 dark:text-gray-400">
         <p className="mb-2">
-          <strong>Controls:</strong> ← → Move • ↓ Drop Faster • ↑/Space Rotate
+          <strong>Controls:</strong> Arrow Keys or Touch buttons • Rotate button to spin
         </p>
         <p>Clear lines to score points and level up!</p>
       </div>

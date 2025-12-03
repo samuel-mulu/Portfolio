@@ -265,8 +265,9 @@ const TRexGame = () => {
     setGameState("playing");
   }, []);
 
-  // Handle canvas click for mobile
-  const handleCanvasClick = () => {
+  // Handle canvas click/touch for mobile
+  const handleCanvasClick = (e) => {
+    e.preventDefault();
     if (gameState === "ready") {
       setGameState("playing");
     } else if (gameState === "playing") {
@@ -275,6 +276,17 @@ const TRexGame = () => {
       restartGame();
     }
   };
+
+  // Prevent scrolling on touch
+  useEffect(() => {
+    const preventScroll = (e) => {
+      if (gameState === "playing") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    return () => document.removeEventListener("touchmove", preventScroll);
+  }, [gameState]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 flex flex-col items-center justify-center p-4">
@@ -357,10 +369,32 @@ const TRexGame = () => {
         )}
       </div>
 
+      {/* Mobile Touch Button */}
+      {gameState === "playing" && (
+        <div className="mt-6 w-full max-w-md">
+          <motion.button
+            onTouchStart={(e) => {
+              e.preventDefault();
+              handleJump();
+            }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              handleJump();
+            }}
+            className="w-full py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold text-xl rounded-xl shadow-lg active:scale-95 transition-transform"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FontAwesomeIcon icon="hand-pointer" className="mr-2" />
+            Tap to Jump
+          </motion.button>
+        </div>
+      )}
+
       {/* Instructions */}
       <div className="mt-6 max-w-md text-center text-smokey-600 dark:text-gray-400">
         <p className="mb-2">
-          <strong>Controls:</strong> Spacebar or Arrow Up to jump
+          <strong>Controls:</strong> Spacebar/Arrow Up or Tap button to jump
         </p>
         <p>Avoid the obstacles and try to beat your high score!</p>
       </div>

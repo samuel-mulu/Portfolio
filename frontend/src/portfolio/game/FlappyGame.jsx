@@ -351,7 +351,8 @@ const FlappyGame = () => {
   }, []);
 
   // Handle canvas click/tap for mobile
-  const handleCanvasClick = () => {
+  const handleCanvasClick = (e) => {
+    e.preventDefault();
     if (gameState === "ready") {
       setGameState("playing");
     } else if (gameState === "playing") {
@@ -360,6 +361,17 @@ const FlappyGame = () => {
       restartGame();
     }
   };
+
+  // Prevent scrolling on touch
+  useEffect(() => {
+    const preventScroll = (e) => {
+      if (gameState === "playing") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    return () => document.removeEventListener("touchmove", preventScroll);
+  }, [gameState]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 flex flex-col items-center justify-center p-4">
@@ -440,10 +452,32 @@ const FlappyGame = () => {
         )}
       </div>
 
+      {/* Mobile Touch Button */}
+      {gameState === "playing" && (
+        <div className="mt-6 w-full max-w-md">
+          <motion.button
+            onTouchStart={(e) => {
+              e.preventDefault();
+              handleFlap();
+            }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              handleFlap();
+            }}
+            className="w-full py-4 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-bold text-xl rounded-xl shadow-lg active:scale-95 transition-transform"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FontAwesomeIcon icon="hand-pointer" className="mr-2" />
+            Tap to Flap
+          </motion.button>
+        </div>
+      )}
+
       {/* Instructions */}
       <div className="mt-6 max-w-md text-center text-smokey-600 dark:text-gray-400">
         <p className="mb-2">
-          <strong>Controls:</strong> Spacebar or Click/Tap to flap upward
+          <strong>Controls:</strong> Spacebar or Tap button to flap upward
         </p>
         <p>Navigate through the green pipes and try to beat your high score!</p>
       </div>

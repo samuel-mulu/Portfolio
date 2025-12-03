@@ -336,7 +336,8 @@ const SnakeGame = () => {
   };
 
   // Handle canvas click for mobile start
-  const handleCanvasClick = () => {
+  const handleCanvasClick = (e) => {
+    e.preventDefault();
     if (gameState === "ready") {
       setGameState("playing");
       generateFood();
@@ -344,6 +345,17 @@ const SnakeGame = () => {
       restartGame();
     }
   };
+
+  // Prevent scrolling on touch
+  useEffect(() => {
+    const preventScroll = (e) => {
+      if (gameState === "playing") {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    return () => document.removeEventListener("touchmove", preventScroll);
+  }, [gameState]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 flex flex-col items-center justify-center p-4">
@@ -427,10 +439,60 @@ const SnakeGame = () => {
         )}
       </div>
 
+      {/* Mobile Touch Controls */}
+      {gameState === "playing" && (
+        <div className="mt-6 w-full max-w-md">
+          <div className="grid grid-cols-3 gap-3">
+            <div></div>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                changeDirection({ x: 0, y: -1 });
+              }}
+              className="py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-up" className="text-2xl" />
+            </motion.button>
+            <div></div>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                changeDirection({ x: -1, y: 0 });
+              }}
+              className="py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-left" className="text-2xl" />
+            </motion.button>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                changeDirection({ x: 0, y: 1 });
+              }}
+              className="py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-down" className="text-2xl" />
+            </motion.button>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                changeDirection({ x: 1, y: 0 });
+              }}
+              className="py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-right" className="text-2xl" />
+            </motion.button>
+          </div>
+        </div>
+      )}
+
       {/* Instructions */}
       <div className="mt-6 max-w-md text-center text-smokey-600 dark:text-gray-400">
         <p className="mb-2">
-          <strong>Controls:</strong> Arrow Keys to move • Swipe left/right on mobile
+          <strong>Controls:</strong> Arrow Keys or Touch buttons to move
         </p>
         <p>Eat the red food to grow longer and increase your score!</p>
       </div>

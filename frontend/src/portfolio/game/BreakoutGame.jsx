@@ -368,13 +368,36 @@ const BreakoutGame = () => {
     [gameState]
   );
 
+  const handleTouchMove = useCallback(
+    (e) => {
+      if (gameState === "playing") {
+        e.preventDefault();
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches[0];
+        const touchX = touch.clientX - rect.left;
+        const state = gameStateRef.current;
+        state.paddle.x = Math.max(
+          0,
+          Math.min(touchX - state.paddle.width / 2, state.canvasWidth - state.paddle.width)
+        );
+      }
+    },
+    [gameState]
+  );
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
       canvas.addEventListener("mousemove", handleMouseMove);
-      return () => canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
+      return () => {
+        canvas.removeEventListener("mousemove", handleMouseMove);
+        canvas.removeEventListener("touchmove", handleTouchMove);
+      };
     }
-  }, [handleMouseMove]);
+  }, [handleMouseMove, handleTouchMove]);
 
   const restartGame = useCallback(() => {
     const canvas = canvasRef.current;
@@ -404,6 +427,19 @@ const BreakoutGame = () => {
     setLives(3);
     setGameState("playing");
   }, [initBricks]);
+
+  // Prevent scrolling on touch (except for paddle movement)
+  useEffect(() => {
+    const preventScroll = (e) => {
+      const target = e.target;
+      // Allow touch on canvas for paddle movement, prevent elsewhere
+      if (gameState === "playing" && !target.closest("canvas")) {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    return () => document.removeEventListener("touchmove", preventScroll);
+  }, [gameState]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 flex flex-col items-center justify-center p-4">
@@ -479,9 +515,50 @@ const BreakoutGame = () => {
         )}
       </div>
 
+      {/* Mobile Touch Controls */}
+      {gameState === "playing" && (
+        <div className="mt-6 w-full max-w-md">
+          <div className="flex gap-3">
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                const interval = setInterval(() => movePaddle("left"), 16);
+                const stopMoving = () => {
+                  clearInterval(interval);
+                  document.removeEventListener("touchend", stopMoving);
+                };
+                document.addEventListener("touchend", stopMoving, { once: true });
+              }}
+              className="flex-1 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-left" className="text-2xl" />
+            </motion.button>
+            <motion.button
+              onTouchStart={(e) => {
+                e.preventDefault();
+                const interval = setInterval(() => movePaddle("right"), 16);
+                const stopMoving = () => {
+                  clearInterval(interval);
+                  document.removeEventListener("touchend", stopMoving);
+                };
+                document.addEventListener("touchend", stopMoving, { once: true });
+              }}
+              className="flex-1 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold rounded-xl shadow-lg active:scale-95"
+              whileTap={{ scale: 0.9 }}
+            >
+              <FontAwesomeIcon icon="arrow-right" className="text-2xl" />
+            </motion.button>
+          </div>
+          <p className="text-center text-sm text-smokey-600 dark:text-gray-400 mt-2">
+            Or drag on canvas to move paddle
+          </p>
+        </div>
+      )}
+
       <div className="mt-6 max-w-md text-center text-smokey-600 dark:text-gray-400">
         <p className="mb-2">
-          <strong>Controls:</strong> Mouse Move or Arrow Keys (A/D) to move paddle
+          <strong>Controls:</strong> Mouse/Touch drag or Arrow Keys/Buttons to move paddle
         </p>
         <p>Break all the bricks to win! You have 3 lives.</p>
       </div>
