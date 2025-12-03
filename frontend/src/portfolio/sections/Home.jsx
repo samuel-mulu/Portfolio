@@ -9,6 +9,7 @@ import { Fragment, useEffect, useState, useRef } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { ErrorMessage } from "../reusables/ErrorResponses";
 import LandingSkeleton from "../loadingPlaceholder/landingSkeleton";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const {
@@ -98,7 +99,7 @@ const Home = () => {
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-screen flex flex-col lg:flex-row w-full pt-20 md:pt-24 pb-16 md:pb-20 overflow-hidden bg-gradient-to-b from-gray-50 via-gray-50 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-950"
+      className="relative min-h-screen flex flex-col lg:flex-row w-full pt-20 md:pt-24 pb-16 md:pb-20 overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950"
     >
       {/* Animated particles */}
       <ParticleBackground />
@@ -130,7 +131,7 @@ const Home = () => {
             >
               Hello I&apos;m{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-blue-600 dark:text-blue-400 font-roboto">
+                <span className="relative z-10 text-green-600 dark:text-green-400 font-roboto">
                   {introText.name}
                 </span>
               </span>
@@ -214,7 +215,7 @@ const Home = () => {
       {/* Decorative floating elements */}
       <div className="hidden lg:block">
         <motion.div
-          className="absolute top-40 left-20 w-8 h-8 bg-blue-500/30 dark:bg-blue-500/20 rounded-full parallax"
+          className="absolute top-40 left-20 w-8 h-8 bg-green-500/30 dark:bg-green-500/20 rounded-full parallax"
           animate={{
             y: [0, -15, 0],
             opacity: [0.6, 1, 0.6],
@@ -227,7 +228,7 @@ const Home = () => {
         />
 
         <motion.div
-          className="absolute bottom-40 right-60 w-6 h-6 bg-purple-500/30 dark:bg-purple-500/20 rounded-full parallax"
+          className="absolute bottom-40 right-60 w-6 h-6 bg-emerald-500/30 dark:bg-emerald-500/20 rounded-full parallax"
           animate={{
             y: [0, -10, 0],
             opacity: [0.6, 1, 0.6],
@@ -305,7 +306,7 @@ const ParticleBackground = () => {
         return (
           <motion.div
             key={index}
-            className="absolute rounded-full bg-blue-400/30 dark:bg-blue-400/20"
+            className="absolute rounded-full bg-green-400/30 dark:bg-green-400/20"
             style={{
               width: size,
               height: size,
@@ -330,77 +331,98 @@ const ParticleBackground = () => {
   );
 };
 
-const ActionButtons = ({ downloadCv, isLoading }) => (
-  <div className="flex flex-row  gap-4 sm:gap-6 max-w-md">
-    <motion.button
-      disabled={isLoading}
-      onClick={() => downloadCv()}
-      className="group relative inline-flex items-center justify-center 
+const ActionButtons = ({ downloadCv, isLoading }) => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex flex-row flex-wrap gap-4 sm:gap-6 max-w-2xl">
+      <motion.button
+        disabled={isLoading}
+        onClick={() => downloadCv()}
+        className="group relative inline-flex items-center justify-center 
       px-6 sm:px-8 py-3 text-base sm:text-lg font-medium
       text-gray-900 dark:text-white overflow-hidden rounded-xl
-      border-2 border-blue-500 transition-all duration-300
-      transform hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/25
+      border-2 border-green-500 transition-all duration-300
+      transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/25
       disabled:opacity-70 disabled:cursor-not-allowed"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <span
-        className="absolute inset-0 w-full h-full bg-gradient-to-r 
-      from-blue-600 to-blue-500 transform translate-x-full 
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <span
+          className="absolute inset-0 w-full h-full bg-gradient-to-r 
+      from-green-600 to-green-500 transform translate-x-full 
       group-hover:translate-x-0 transition-transform duration-300"
-      />
-      <span className="relative flex items-center justify-center gap-3 w-full text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">
-        {isLoading ? (
-          <>
-            <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
-            Downloading...
-          </>
-        ) : (
-          <>
-            Download CV
-            <FontAwesomeIcon icon={["fas", "download"]} className="text-lg" />
-          </>
-        )}
-      </span>
-    </motion.button>
+        />
+        <span className="relative flex items-center justify-center gap-3 w-full text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">
+          {isLoading ? (
+            <>
+              <svg
+                className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Downloading...
+            </>
+          ) : (
+            <>
+              Download CV
+              <FontAwesomeIcon icon={["fas", "download"]} className="text-lg" />
+            </>
+          )}
+        </span>
+      </motion.button>
 
-    <motion.a
-      href="#contact"
-      className="inline-flex items-center justify-center 
+      <motion.a
+        href="#contact"
+        className="inline-flex items-center justify-center 
       px-6 sm:px-8 py-3 text-base sm:text-lg font-medium text-white
-      bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl
-      hover:from-blue-500 hover:to-blue-400 
+      bg-gradient-to-r from-green-600 to-green-500 rounded-xl
+      hover:from-green-500 hover:to-green-400 
       transform hover:-translate-y-1 transition-all duration-300
-      shadow-lg hover:shadow-xl hover:shadow-blue-500/25"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <span className="flex items-center justify-center gap-3 w-full">
-        Hire Me
-        <FontAwesomeIcon icon={["fas", "handshake"]} className="text-lg" />
-      </span>
-    </motion.a>
-  </div>
-);
+      shadow-lg hover:shadow-xl hover:shadow-green-500/25"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span className="flex items-center justify-center gap-3 w-full">
+          Hire Me
+          <FontAwesomeIcon icon={["fas", "handshake"]} className="text-lg" />
+        </span>
+      </motion.a>
+
+      <motion.button
+        onClick={() => navigate("/game")}
+        className="inline-flex items-center justify-center 
+      px-6 sm:px-8 py-3 text-base sm:text-lg font-medium text-white
+      bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl
+      hover:from-emerald-500 hover:to-teal-500 
+      transform hover:-translate-y-1 transition-all duration-300
+      shadow-lg hover:shadow-xl hover:shadow-emerald-500/25"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span className="flex items-center justify-center gap-3 w-full">
+          Play Game
+          <FontAwesomeIcon icon={["fas", "gamepad"]} className="text-lg" />
+        </span>
+      </motion.button>
+    </div>
+  );
+};
 
 const SocialIcons = ({ referenceIcons }) => {
   // Determine icon prefix based on icon name
@@ -443,13 +465,13 @@ const SocialIcons = ({ referenceIcons }) => {
                 transition={{ type: "spring", stiffness: 400 }}
               >
                 <motion.span
-                  className="absolute -inset-2 rounded-full bg-blue-400/10 dark:bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute -inset-2 rounded-full bg-green-400/10 dark:bg-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   animate={{ scale: [0.9, 1.1, 0.9] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
                 <FontAwesomeIcon
                   icon={[iconPrefix, item.icon]}
-                  className="text-2xl sm:text-3xl md:text-4xl text-blue-500 dark:text-blue-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors duration-300 relative z-10"
+                  className="text-2xl sm:text-3xl md:text-4xl text-green-500 dark:text-green-400 hover:text-green-400 dark:hover:text-green-300 transition-colors duration-300 relative z-10"
                 />
               </motion.a>
             </Fragment>
@@ -464,7 +486,7 @@ const TypeWriter = ({ typewriterTexts }) => {
 
   return (
     <div className="relative inline-block">
-      <div className="absolute -inset-1 bg-red-500/10 dark:bg-red-400/10 rounded-lg blur-md" />
+      <div className="absolute -inset-1 bg-green-500/10 dark:bg-green-400/10 rounded-lg blur-md" />
       <motion.div
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
@@ -475,13 +497,13 @@ const TypeWriter = ({ typewriterTexts }) => {
           wrapper="span"
           speed={70}
           repeat={Infinity}
-          className="relative block text-2xl md:text-3xl lg:text-4xl font-roboto text-red-500 dark:text-red-400 font-bold"
+          className="relative block text-2xl md:text-3xl lg:text-4xl font-roboto text-green-500 dark:text-green-400 font-bold"
         />
       </motion.div>
 
       {/* Typing cursor effect */}
       <motion.div
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0.5 h-6 md:h-8 lg:h-10 bg-red-500 dark:bg-red-400 ml-1"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0.5 h-6 md:h-8 lg:h-10 bg-green-500 dark:bg-green-400 ml-1"
         animate={{ opacity: [1, 0, 1] }}
         transition={{ duration: 0.8, repeat: Infinity }}
       />

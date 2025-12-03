@@ -27,7 +27,7 @@ export default function Experience() {
   if (isLoading) {
     return (
       <div className="h-64 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
       </div>
     );
   }
@@ -108,7 +108,7 @@ function JobCard({ index, job }) {
       transition={{ duration: 0.5, delay: index * 0.2 }}
       className="border border-gray-300 bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300"
     >
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 transform translate-x-16 -translate-y-8">
           <div className="absolute inset-0 bg-white opacity-10 rotate-45"></div>
         </div>
@@ -153,7 +153,7 @@ function JobCard({ index, job }) {
                 {parsedTechnologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-full text-sm bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 text-blue-800 dark:text-blue-200"
+                    className="px-3 py-1 rounded-full text-sm bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900 dark:to-emerald-900 text-green-800 dark:text-green-200"
                   >
                     {tech}
                   </span>
@@ -196,7 +196,7 @@ function JobCard({ index, job }) {
           )}
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className={`px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all duration-300 ${
+            className={`px-4 py-2 rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium flex items-center justify-center hover:from-green-600 hover:to-emerald-700 transition-all duration-300 ${
               company_url ? "flex-1" : "w-full"
             }`}
           >

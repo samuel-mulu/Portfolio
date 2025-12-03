@@ -13,10 +13,10 @@ library.add(fas, fab);
 // Modern 3D-style skill card design
 const SkillCard = ({ skill, index, isVisible }) => {
   const colors = {
-    beginner: "from-amber-400 to-orange-500",
-    intermediate: "from-teal-400 to-emerald-500",
-    advanced: "from-blue-400 to-indigo-500",
-    expert: "from-purple-400 to-fuchsia-500",
+    beginner: "from-green-400 to-emerald-500",
+    intermediate: "from-emerald-400 to-green-500",
+    advanced: "from-green-500 to-teal-500",
+    expert: "from-emerald-500 to-teal-600",
   };
 
   const getLevel = (proficiency) => {
@@ -114,8 +114,8 @@ const SkillsSkeleton = () => {
     <section className="relative w-full min-h-screen py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-300 dark:bg-purple-900/30 rounded-full filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-300 dark:bg-blue-900/30 rounded-full filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-300 dark:bg-emerald-900/30 rounded-full filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-green-300 dark:bg-green-900/30 rounded-full filter blur-3xl opacity-20 animate-pulse" />
       </div>
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
@@ -248,15 +248,15 @@ const Skills = () => {
   return (
     <motion.section
       id="skills"
-      className="relative w-full min-h-screen py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 overflow-hidden"
+      className="relative w-full min-h-screen py-20 bg-gradient-to-b from-cream-50 to-cream-100 dark:from-slate-900 dark:to-slate-800 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-300 dark:bg-purple-900/30 rounded-full filter blur-3xl opacity-20" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-300 dark:bg-blue-900/30 rounded-full filter blur-3xl opacity-20" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-300 dark:bg-emerald-900/30 rounded-full filter blur-3xl opacity-20" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-green-300 dark:bg-green-900/30 rounded-full filter blur-3xl opacity-20" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxMTEiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')] bg-center opacity-50" />
       </div>
 
@@ -267,7 +267,7 @@ const Skills = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-6">
+          <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 dark:from-green-400 dark:via-emerald-400 dark:to-teal-400 bg-clip-text text-transparent mb-6">
             Technical Proficiency
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -297,7 +297,7 @@ const Skills = () => {
                 {skillsCategory === category.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                    className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"
                     initial={false}
                     transition={{ type: "spring", duration: 0.5 }}
                   />

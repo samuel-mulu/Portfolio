@@ -159,12 +159,12 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen py-20 relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-950/30"
+      className="w-full min-h-screen py-20 relative overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-800 dark:to-green-950/30"
     >
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
-      <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -left-20 w-96 h-96 rounded-full bg-indigo-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none" />
+      <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-green-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-20 w-96 h-96 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
 
       {/* Subtle grid pattern overlay */}
       <div
@@ -182,12 +182,12 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 text-blue-600 dark:text-blue-400 font-medium text-sm tracking-wide mb-4 shadow-sm">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-600 dark:text-green-400 font-medium text-sm tracking-wide mb-4 shadow-sm">
             <BiMailSend className="mr-2" />
             Let's Connect
           </span>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400">
             Get in Touch
           </h2>
 
@@ -204,7 +204,7 @@ const Contact = () => {
             transition={{ duration: 0.7 }}
             className="w-full lg:w-3/5"
           >
-            <div className="h-full bg-white dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 md:p-10 relative overflow-hidden border border-gray-100 dark:border-gray-700">
+            <div className="h-full bg-cream-50 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 md:p-10 relative overflow-hidden border border-smokey-200 dark:border-gray-700">
               {/* Success message overlay */}
               <AnimatePresence>
                 {success && (
@@ -212,7 +212,7 @@ const Contact = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    className="absolute inset-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm flex flex-col items-center justify-center p-6 z-20"
+                    className="absolute inset-0 bg-cream-50/95 dark:bg-gray-800/95 backdrop-blur-sm flex flex-col items-center justify-center p-6 z-20"
                   >
                     <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4 text-green-600 dark:text-green-400">
                       <MdDone className="w-8 h-8" />
@@ -235,11 +235,11 @@ const Contact = () => {
               </AnimatePresence>
 
               {/* Form decorations */}
-              <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-blue-500/5 blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-40 -left-20 w-64 h-64 rounded-full bg-indigo-500/5 blur-3xl pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-green-500/5 blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-40 -left-20 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
 
               <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white flex items-center">
-                <div className="mr-3 p-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400">
+                <div className="mr-3 p-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-400">
                   <RiMailSendLine className="w-5 h-5" />
                 </div>
                 Send a Message
@@ -279,10 +279,10 @@ const Contact = () => {
                           ${
                             errors[field] && touched[field]
                               ? "border-red-500 focus:border-red-500"
-                              : "border-gray-200 dark:border-gray-700 focus:border-blue-500"
+                              : "border-gray-200 dark:border-gray-700 focus:border-green-500"
                           }
                           bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                          focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                          focus:outline-none focus:ring-2 focus:ring-green-500/20`}
                         placeholder={`Enter your ${
                           field === "username" ? "name" : field
                         }...`}
@@ -298,10 +298,10 @@ const Contact = () => {
                           ${
                             errors[field] && touched[field]
                               ? "border-red-500 focus:border-red-500"
-                              : "border-gray-200 dark:border-gray-700 focus:border-blue-500"
+                              : "border-gray-200 dark:border-gray-700 focus:border-green-500"
                           }
                           bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                          focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
+                          focus:outline-none focus:ring-2 focus:ring-green-500/20`}
                         placeholder={`Enter your ${
                           field === "username" ? "name" : field
                         }...`}
@@ -329,8 +329,8 @@ const Contact = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`w-full bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 
-                    hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white font-medium 
+                  className={`w-full bg-gradient-to-r from-green-600 via-green-700 to-emerald-700 
+                    hover:from-green-700 hover:via-green-800 hover:to-emerald-800 text-white font-medium 
                     py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-70 
                     flex items-center justify-center gap-2`}
                 >
@@ -357,10 +357,10 @@ const Contact = () => {
             transition={{ duration: 0.7 }}
             className="w-full lg:w-2/5"
           >
-            <div className="bg-white dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 md:p-10 h-full relative border border-gray-100 dark:border-gray-700">
+            <div className="bg-cream-50 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-8 md:p-10 h-full relative border border-smokey-200 dark:border-gray-700">
               {/* Contact Info decorations */}
-              <div className="absolute -top-20 -left-20 w-48 h-48 rounded-full bg-indigo-500/5 blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
+              <div className="absolute -top-20 -left-20 w-48 h-48 rounded-full bg-emerald-500/5 blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-green-500/5 blur-3xl pointer-events-none" />
 
               <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
                 Contact Information
@@ -394,8 +394,8 @@ const Contact = () => {
 
                 <motion.a
                   href="#contact"
-                  className="block text-center bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 
-                    hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 text-white px-8 py-3 rounded-xl 
+                  className="block text-center bg-gradient-to-r from-green-600 via-green-700 to-emerald-700 
+                    hover:from-green-700 hover:via-green-800 hover:to-emerald-800 text-white px-8 py-3 rounded-xl 
                     font-medium shadow-md hover:shadow-lg transition-all w-full justify-center"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -432,7 +432,7 @@ const Contact = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors"
                       >
                         <i className={`fab fa-${social.icon}`}></i>
                       </motion.a>
@@ -451,7 +451,7 @@ const Contact = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 max-w-4xl mx-auto"
         >
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 shadow-xl">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 shadow-xl">
             <div className="absolute top-0 left-0 w-full h-full bg-pattern-dots opacity-10"></div>
             <div className="relative p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-white md:flex-1">
@@ -464,7 +464,7 @@ const Contact = () => {
               </div>
               <motion.a
                 href="#contact"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-xl font-medium shadow-md transition-colors flex items-center gap-2 whitespace-nowrap"
+                className="bg-white text-green-600 hover:bg-green-50 px-6 py-3 rounded-xl font-medium shadow-md transition-colors flex items-center gap-2 whitespace-nowrap"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -495,9 +495,9 @@ const ContactItem = ({ icon, title, value, href }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className="flex items-start gap-4 p-4 rounded-xl hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-colors"
+      className="flex items-start gap-4 p-4 rounded-xl hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-colors"
     >
-      <div className="p-3 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 dark:from-blue-500/20 dark:to-indigo-500/20 rounded-xl text-blue-600 dark:text-blue-400 shadow-sm">
+      <div className="p-3 bg-gradient-to-br from-green-500/10 to-emerald-500/10 dark:from-green-500/20 dark:to-emerald-500/20 rounded-xl text-green-600 dark:text-green-400 shadow-sm">
         {icon}
       </div>
 
@@ -521,7 +521,7 @@ const ContactItem = ({ icon, title, value, href }) => {
         </div>
         <a
           href={href}
-          className="text-gray-900 dark:text-white font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          className="text-gray-900 dark:text-white font-medium hover:text-green-600 dark:hover:text-green-400 transition-colors"
         >
           {value}
         </a>

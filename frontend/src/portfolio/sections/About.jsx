@@ -54,7 +54,7 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="relative px-4 sm:px-8 md:px-12 min-h-screen w-full py-24 overflow-hidden bg-gradient-to-b from-gray-50 via-gray-100 to-white dark:from-gray-900 dark:via-gray-900 dark:to-gray-950"
+      className="relative px-4 sm:px-8 md:px-12 min-h-screen w-full py-24 overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950"
     >
       {/* Interactive 3D particles background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -65,7 +65,7 @@ const About = () => {
           {Array.from({ length: 20 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
+              className="absolute rounded-full bg-gradient-to-r from-green-500 to-emerald-500"
             />
           ))}
         </motion.div>
@@ -82,8 +82,8 @@ const About = () => {
 
       <div className="container mx-auto max-w-7xl">
         <motion.div ref={sectionRef} className="text-center mb-16">
-          <motion.span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 font-medium text-sm tracking-wide mb-4 shadow-sm backdrop-blur-md border border-blue-100/20 dark:border-blue-800/20">
-            <span className="flex items-center justify-center w-6 h-6 bg-gradient-to-r from-blue-600 to-blue-500 dark:from-blue-500 dark:to-blue-400 rounded-full text-white text-xs mr-2 shadow-inner">
+          <motion.span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-600 dark:text-green-400 font-medium text-sm tracking-wide mb-4 shadow-sm backdrop-blur-md border border-green-100/20 dark:border-green-800/20">
+            <span className="flex items-center justify-center w-6 h-6 bg-gradient-to-r from-green-600 to-green-500 dark:from-green-500 dark:to-green-400 rounded-full text-white text-xs mr-2 shadow-inner">
               <FontAwesomeIcon icon="user" className="w-3 h-3" />
             </span>
             Discover My Story
@@ -91,7 +91,7 @@ const About = () => {
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 dark:from-green-400 dark:via-emerald-400 dark:to-teal-400"
           >
             About Me
           </motion.h2>
@@ -112,19 +112,19 @@ const About = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.5 }}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-semibold"
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 rounded-full shadow-lg flex items-center gap-2 text-sm font-semibold"
                 >
                   <FontAwesomeIcon
                     icon="circle"
                     className="text-xs text-green-300 animate-pulse"
                   />
-                  <span>Available for Hire</span>
+                  <span>Online</span>
                 </motion.div>
               </div>
 
               {/* Image frame with animated gradient border */}
               <div className="relative w-80 h-80 sm:w-96 sm:h-96 rounded-2xl overflow-hidden shadow-2xl transform hover:rotate-1 transition-transform duration-500">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-x transform transition-transform duration-1000 group-hover:scale-105"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 animate-gradient-x transform transition-transform duration-1000 group-hover:scale-105"></div>
 
                 <div className="absolute inset-0 bg-white dark:bg-gray-800 m-[3px] rounded-2xl overflow-hidden">
                   {!isImageLoaded && (
@@ -178,16 +178,16 @@ const About = () => {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-5 -left-5 w-28 h-28 border-t-4 border-l-4 border-blue-500 rounded-tl-3xl transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></div>
-              <div className="absolute -bottom-5 -right-5 w-28 h-28 border-b-4 border-r-4 border-pink-500 rounded-br-3xl transform group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300"></div>
+              <div className="absolute -top-5 -left-5 w-28 h-28 border-t-4 border-l-4 border-green-500 rounded-tl-3xl transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></div>
+              <div className="absolute -bottom-5 -right-5 w-28 h-28 border-b-4 border-r-4 border-emerald-500 rounded-br-3xl transform group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300"></div>
 
               {/* Stats/highlights - with hover animations */}
               <motion.div
                 className="absolute -right-20 top-1/4 transform rotate-6"
                 whileHover={{ rotate: 0, scale: 1.05 }}
               >
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 text-center w-36 backdrop-blur-sm border border-gray-100 dark:border-gray-700">
-                  <span className="block text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-3 text-center w-36 backdrop-blur-sm border border-gray-100 dark:border-gray-700">
+                  <span className="block text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-600 dark:from-emerald-400 dark:to-green-400">
                     2+
                   </span>
                   <span className="text-xs text-gray-600 dark:text-gray-400">
@@ -200,8 +200,8 @@ const About = () => {
                 className="absolute -left-20 bottom-1/4 transform -rotate-6"
                 whileHover={{ rotate: 0, scale: 1.05 }}
               >
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 text-center w-36 backdrop-blur-sm border border-gray-100 dark:border-gray-700">
-                  <span className="block text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-3 text-center w-36 backdrop-blur-sm border border-gray-100 dark:border-gray-700">
+                  <span className="block text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400">
                     10+
                   </span>
                   <span className="text-xs text-gray-600 dark:text-gray-400">
@@ -214,7 +214,7 @@ const About = () => {
               <motion.div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full px-5 py-2 text-sm font-medium shadow-lg border border-amber-400/20 flex items-center space-x-1">
                   <FontAwesomeIcon icon="trophy" className="mr-1" />
-                  <span>Top-Rated Developer</span>
+                  <span>Software Engineer</span>
                 </div>
               </motion.div>
             </div>
@@ -230,8 +230,8 @@ const About = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium transition-all duration-300 ${
                     activeTab === tab.id
-                      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md"
-                      : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-sm"
+                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-md"
+                      : "bg-cream-50 dark:bg-gray-800 text-smokey-700 dark:text-gray-300 hover:bg-cream-100 dark:hover:bg-gray-700 shadow-sm"
                   }`}
                 >
                   <FontAwesomeIcon icon={tab.icon} />
@@ -257,12 +257,12 @@ const About = () => {
 
 const AboutContent = ({ aboutData }) => {
   return (
-    <motion.div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 backdrop-blur-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden">
+    <motion.div className="bg-cream-50 dark:bg-gray-800 rounded-2xl shadow-xl p-8 backdrop-blur-sm border border-smokey-200 dark:border-gray-700 relative overflow-hidden">
       {/* Background decorative element */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-500 to-purple-600 opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-green-500 to-emerald-600 opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
 
       <div className="relative">
-        <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+        <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600">
           Who I Am
         </h3>
 
@@ -278,19 +278,19 @@ const AboutContent = ({ aboutData }) => {
               : JSON.parse(aboutData.about_me || "[]").length === 0)) &&
             aboutData?.bio && <p>{aboutData.bio}</p>}
           <div className="flex flex-wrap gap-3 mt-6">
-            <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium">
+            <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-xs font-medium">
               MERN
             </span>
-            <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium">
+            <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-xs font-medium">
               Next.js
             </span>
-            <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-xs font-medium">
+            <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-medium">
               Flutter
             </span>
             <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-xs font-medium">
               Python
             </span>
-            <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full text-xs font-medium">
+            <span className="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-medium">
               ML
             </span>
           </div>
@@ -304,7 +304,7 @@ const AboutContent = ({ aboutData }) => {
           <div className="flex flex-wrap gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg transition-all hover:scale-105 transform"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium hover:shadow-lg transition-all hover:scale-105 transform"
             >
               <FontAwesomeIcon icon="paper-plane" />
               Let's Connect
@@ -323,12 +323,12 @@ const ServicesContent = ({ services }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 backdrop-blur-sm border border-gray-100 dark:border-gray-700 relative overflow-hidden"
+      className="bg-cream-50 dark:bg-gray-800 rounded-2xl shadow-xl p-8 backdrop-blur-sm border border-smokey-200 dark:border-gray-700 relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-500 to-green-500 opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-green-500 to-emerald-500 opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
 
       <div className="relative">
-        <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-500">
+        <h3 className="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500">
           Services I Offer
         </h3>
 
@@ -349,7 +349,7 @@ const ServicesContent = ({ services }) => {
               <FontAwesomeIcon
                 icon="spinner"
                 spin
-                className="text-4xl text-blue-500 mb-4"
+                className="text-4xl text-green-500 mb-4"
               />
               <p className="text-gray-600 dark:text-gray-400">
                 Loading services...
@@ -377,9 +377,9 @@ const ServiceCard = ({ service, index }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
       whileHover={{ scale: 1.02, y: -5 }}
-      className="flex items-start gap-6 p-6 bg-white dark:bg-gray-800/50 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+      className="flex items-start gap-6 p-6 bg-cream-50 dark:bg-gray-800/50 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-smokey-200 dark:border-gray-700"
     >
-      <div className="w-14 h-14 p-3 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 text-blue-600 dark:text-blue-400 rounded-xl shadow-sm">
+      <div className="w-14 h-14 p-3 flex items-center justify-center bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 text-green-600 dark:text-green-400 rounded-2xl shadow-sm">
         <FontAwesomeIcon icon={iconName} size="lg" />
       </div>
       <div>

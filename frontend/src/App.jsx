@@ -8,11 +8,46 @@ import Register from "./auth/Register.jsx";
 import { AuthProvider } from "./auth/AuthProvider.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
 import ForgotPassword from "./auth/forgotPassword.jsx";
+import GameSelection from "./portfolio/game/GameSelection.jsx";
+import TRexGame from "./portfolio/game/TRexGame.jsx";
+import SnakeGame from "./portfolio/game/SnakeGame.jsx";
+import FlappyGame from "./portfolio/game/FlappyGame.jsx";
+import Game2048 from "./portfolio/game/Game2048.jsx";
+import TetrisGame from "./portfolio/game/TetrisGame.jsx";
+import BreakoutGame from "./portfolio/game/BreakoutGame.jsx";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Portfolio />,
+  },
+  {
+    path: "/game",
+    element: <GameSelection />,
+  },
+  {
+    path: "/game/trex",
+    element: <TRexGame />,
+  },
+  {
+    path: "/game/snake",
+    element: <SnakeGame />,
+  },
+  {
+    path: "/game/flappy",
+    element: <FlappyGame />,
+  },
+  {
+    path: "/game/2048",
+    element: <Game2048 />,
+  },
+  {
+    path: "/game/tetris",
+    element: <TetrisGame />,
+  },
+  {
+    path: "/game/breakout",
+    element: <BreakoutGame />,
   },
   {
     path: "/dashboard",

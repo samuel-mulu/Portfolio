@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="px-12 py-3 bg-blue-300/10 text-stone-800 dark:text-white backdrop-blur-md fixed top-0 w-full z-50 shadow-lg transition-colors duration-300">
+      <header className="px-12 py-3 bg-smokey-100/80 dark:bg-gray-900/80 text-smokey-800 dark:text-white backdrop-blur-md fixed top-0 w-full z-50 shadow-lg transition-colors duration-300">
         <div className="container mx-auto flex justify-between items-center">
           <img src={logo} alt="Logo" className="h-16" />
           <div className="lg:hidden text-text_primary text-4xl md:text-6xl">
@@ -32,7 +32,7 @@ const Header = () => {
           <nav
             className={`${
               showMenu
-                ? "flex flex-col max-sm:bg-white dark:max-sm:bg-gray-800  lg:flex-row gap-4 fixed top-20 right-0 py-4 px-8 rounded-lg bg-opacity-30 backdrop-blur-md shadow-xl transition-all duration-300 ease-linear"
+                ? "flex flex-col max-sm:bg-cream-50 dark:max-sm:bg-gray-800  lg:flex-row gap-4 fixed top-20 right-0 py-4 px-8 rounded-lg bg-opacity-30 backdrop-blur-md shadow-xl transition-all duration-300 ease-linear"
                 : "hidden lg:flex lg:flex-row gap-4"
             }`}
           >
@@ -54,7 +54,7 @@ const Header = () => {
         className={`${
           activeLink === "home" || activeLink === ""
             ? "hidden"
-            : "  cursor-pointer text-black dark:text-white  fixed bottom-10 right-4 z-50 grid place-content-center shadow-xl size-10 rounded-full overflow-hidden backdrop-blur-md bg-opacity-30 text-stone-100 hover:bg-opacity-50 border border-stone-800 dark:border-stone-100 transition-colors duration-300"
+            : "  cursor-pointer text-smokey-800 dark:text-white  fixed bottom-10 right-4 z-50 grid place-content-center shadow-xl size-10 rounded-full overflow-hidden backdrop-blur-md bg-cream-200/80 dark:bg-gray-800/80 hover:bg-cream-300 dark:hover:bg-gray-700 border border-smokey-300 dark:border-stone-100 transition-colors duration-300"
         }`}
       >
         <FontAwesomeIcon
@@ -95,7 +95,7 @@ const NavItems = ({ activeLink }) => {
             activeLink === label.toLowerCase()
               ? "bg-opacity-80 bg-blue-700"
               : ""
-          } hover:bg-opacity-60 hover:bg-blue-400 text-stone-800 dark:text-stone-100 cursor-pointer flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 backdrop-blur-md overflow-hidden`}
+          } hover:bg-opacity-60 hover:bg-green-400 text-smokey-800 dark:text-stone-100 cursor-pointer flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 backdrop-blur-md overflow-hidden`}
         >
           <FontAwesomeIcon icon={icon} className="mr-2" />
           <span>{label}</span>
