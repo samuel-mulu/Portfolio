@@ -336,73 +336,73 @@ const ActionButtons = ({ downloadCv, isLoading }) => {
 
   return (
     <div className="flex flex-row flex-wrap gap-4 sm:gap-6 max-w-2xl">
-      <motion.button
-        disabled={isLoading}
-        onClick={() => downloadCv()}
-        className="group relative inline-flex items-center justify-center 
+    <motion.button
+      disabled={isLoading}
+      onClick={() => downloadCv()}
+      className="group relative inline-flex items-center justify-center 
       px-6 sm:px-8 py-3 text-base sm:text-lg font-medium
       text-gray-900 dark:text-white overflow-hidden rounded-xl
       border-2 border-green-500 transition-all duration-300
       transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/25
       disabled:opacity-70 disabled:cursor-not-allowed"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <span
-          className="absolute inset-0 w-full h-full bg-gradient-to-r 
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <span
+        className="absolute inset-0 w-full h-full bg-gradient-to-r 
       from-green-600 to-green-500 transform translate-x-full 
       group-hover:translate-x-0 transition-transform duration-300"
-        />
-        <span className="relative flex items-center justify-center gap-3 w-full text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">
-          {isLoading ? (
-            <>
-              <svg
-                className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Downloading...
-            </>
-          ) : (
-            <>
-              Download CV
-              <FontAwesomeIcon icon={["fas", "download"]} className="text-lg" />
-            </>
-          )}
-        </span>
-      </motion.button>
+      />
+      <span className="relative flex items-center justify-center gap-3 w-full text-gray-900 dark:text-white group-hover:text-white transition-colors duration-300">
+        {isLoading ? (
+          <>
+            <svg
+              className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            Downloading...
+          </>
+        ) : (
+          <>
+            Download CV
+            <FontAwesomeIcon icon={["fas", "download"]} className="text-lg" />
+          </>
+        )}
+      </span>
+    </motion.button>
 
-      <motion.a
-        href="#contact"
-        className="inline-flex items-center justify-center 
+    <motion.a
+      href="#contact"
+      className="inline-flex items-center justify-center 
       px-6 sm:px-8 py-3 text-base sm:text-lg font-medium text-white
       bg-gradient-to-r from-green-600 to-green-500 rounded-xl
       hover:from-green-500 hover:to-green-400 
       transform hover:-translate-y-1 transition-all duration-300
       shadow-lg hover:shadow-xl hover:shadow-green-500/25"
-        whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.95 }}
-      >
-        <span className="flex items-center justify-center gap-3 w-full">
-          Hire Me
-          <FontAwesomeIcon icon={["fas", "handshake"]} className="text-lg" />
-        </span>
-      </motion.a>
+    >
+      <span className="flex items-center justify-center gap-3 w-full">
+        Hire Me
+        <FontAwesomeIcon icon={["fas", "handshake"]} className="text-lg" />
+      </span>
+    </motion.a>
 
       <motion.button
         onClick={() => navigate("/game")}
@@ -420,8 +420,8 @@ const ActionButtons = ({ downloadCv, isLoading }) => {
           <FontAwesomeIcon icon={["fas", "gamepad"]} className="text-lg" />
         </span>
       </motion.button>
-    </div>
-  );
+  </div>
+);
 };
 
 const SocialIcons = ({ referenceIcons }) => {

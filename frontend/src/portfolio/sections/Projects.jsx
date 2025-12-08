@@ -7,8 +7,76 @@ import {
   faLayerGroup,
   faStar,
   faArrowRight,
+  faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+
+// Enterprise projects data
+const enterpriseProjects = [
+  {
+    id: "enterprise-radbest",
+    title: "Rad Best Trading - B2B Furniture Platform",
+    role: "Full-Stack Developer",
+    description:
+      "Premium office furniture trading platform featuring product catalog, quote request system, service showcase, and customer testimonials. Built for B2B clients in Ethiopia with modern e-commerce capabilities and seamless user experience.",
+    demo_link: "http://radbestgroup.com/",
+    github_link: null,
+    tools: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "RESTful API",
+    ],
+    image_path:
+      "https://via.placeholder.com/800x600/10b981/ffffff?text=Rad+Best+Trading",
+    category: "enterprise",
+  },
+  {
+    id: "enterprise-belayab",
+    title: "Belayab Group - Business Conglomerate Platform",
+    role: "Full-Stack Developer",
+    description:
+      "Comprehensive corporate website for Belayab Business Group, a dynamic conglomerate operating across retail, food, automotive, manufacturing, agriculture, logistics, and hospitality. Features brand showcase, company information, and multi-brand navigation system.",
+    demo_link: "https://belayabgroup.com/",
+    github_link: null,
+    tools: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "API Routes",
+    ],
+    image_path:
+      "https://via.placeholder.com/800x600/059669/ffffff?text=Belayab+Group",
+    category: "enterprise",
+  },
+  {
+    id: "enterprise-longtea",
+    title: "Long Tea - Bubble Tea E-Commerce Platform",
+    role: "Backend Developer",
+    description:
+      "Full-stack e-commerce platform for Long Tea, Ethiopia's exciting bubble tea destination. Features customizable tea ordering system, pre-order functionality, admin panel, and mobile app integration. Built with scalable architecture and modern backend technologies.",
+    demo_link: "https://longtea.vercel.app/",
+    github_link: null,
+    tools: [
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "RESTful API",
+      "JWT",
+      "Payment Integration",
+    ],
+    image_path:
+      "https://via.placeholder.com/800x600/14b8a6/ffffff?text=Long+Tea",
+    category: "enterprise",
+  },
+];
 
 const Projects = () => {
   const {
@@ -17,24 +85,38 @@ const Projects = () => {
     error: projectsError,
   } = useProjectsQuery();
 
+  // Tab state
+  const [activeTab, setActiveTab] = useState("all");
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // Show 3 projects per page
 
+  // Merge database projects with enterprise projects and add category if missing
+  const allProjects = useMemo(() => {
+    const dbProjects = (projectsData || []).map((project) => ({
+      ...project,
+      category: project.category || "other", // Default to "other" if no category
+    }));
+    return [...enterpriseProjects, ...dbProjects];
+  }, [projectsData]);
+
+  // Filter projects by active tab
+  const filteredProjects = useMemo(() => {
+    if (activeTab === "all") return allProjects;
+    return allProjects.filter((project) => project.category === activeTab);
+  }, [allProjects, activeTab]);
+
   // Calculate pagination
-  const totalPages = projectsData
-    ? Math.ceil(projectsData.length / itemsPerPage)
-    : 0;
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentProjects = projectsData
-    ? projectsData.slice(startIndex, endIndex)
-    : [];
+  const currentProjects = filteredProjects.slice(startIndex, endIndex);
 
-  // Reset to page 1 when projects data changes
+  // Reset to page 1 when tab or projects change
   useEffect(() => {
     setCurrentPage(1);
-  }, [projectsData]);
+  }, [activeTab, filteredProjects.length]);
 
   if (isProjectLoading) {
     return <ProjectsShimmer />;
@@ -97,6 +179,44 @@ const Projects = () => {
           </motion.p>
         </div>
 
+        {/* Category Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex justify-center mb-12"
+        >
+          <div className="inline-flex items-center p-1.5 bg-cream-100 dark:bg-gray-800/70 backdrop-blur-sm rounded-full shadow-inner border border-smokey-200 dark:border-gray-700">
+            {[
+              { id: "all", label: "All Projects", icon: faLayerGroup },
+              { id: "enterprise", label: "Enterprise", icon: faBuilding },
+              { id: "other", label: "Other Projects", icon: faStar },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`relative px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-md"
+                    : "text-smokey-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400"
+                }`}
+              >
+                {activeTab === tab.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full"
+                    transition={{ type: "spring", duration: 0.5 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <FontAwesomeIcon icon={tab.icon} className="w-4 h-4" />
+                  {tab.label}
+                </span>
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Featured Project Highlight */}
         {currentProjects &&
           currentProjects.map((project, index) => (
@@ -109,7 +229,7 @@ const Projects = () => {
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur opacity-20 dark:opacity-30 group-hover:opacity-40 transition duration-1000"></div>
               <div className="relative flex flex-col lg:flex-row bg-cream-50 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl">
-                <div className="lg:w-3/5 h-64 lg:h-auto relative overflow-hidden">
+                <div className="lg:w-3/5 h-64 lg:h-80 lg:max-h-96 relative overflow-hidden">
                   <img
                     src={
                       project?.image_path
@@ -123,7 +243,7 @@ const Projects = () => {
                         : "https://via.placeholder.com/800x600?text=Project+Image"
                     }
                     alt={project.title}
-                    className="h-full  object-contain object-center transition-transform duration-700 hover:scale-105"
+                    className="h-full w-full object-contain object-center transition-transform duration-700 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                     <div className="flex flex-wrap gap-2 mb-3">

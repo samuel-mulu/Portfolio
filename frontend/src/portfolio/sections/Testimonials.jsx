@@ -22,6 +22,7 @@ const Testimonials = () => {
       name: "Amdebrhan Asmamaw",
       position: "Senior Fullstack Developer",
       company: "amdebrhan.com",
+      companyLink: "https://amdebirhan.vercel.app/",
       testimonial:
         "As a fellow developer, I can confidently say this developer is one of the most talented professionals I've worked with. Their technical expertise, problem-solving skills, and dedication to excellence make them an invaluable asset to any team.",
       rating: 5,
@@ -132,9 +133,20 @@ const Testimonials = () => {
                 <p className="text-sm text-green-600 dark:text-green-400 font-medium">
                   {testimonial.position}
                 </p>
-                <p className="text-sm text-smokey-600 dark:text-gray-400">
-                  {testimonial.company}
-                </p>
+                {testimonial.companyLink ? (
+                  <a
+                    href={testimonial.companyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 hover:underline transition-colors"
+                  >
+                    {testimonial.company}
+                  </a>
+                ) : (
+                  <p className="text-sm text-smokey-600 dark:text-gray-400">
+                    {testimonial.company}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}

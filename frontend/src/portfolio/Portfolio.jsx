@@ -23,10 +23,10 @@ const Portfolio = () => {
       {/* <main className="flex flex-col justify-center items-center w-full transition-colors duration-300"> */}
       <Home />
       <About />
-      <Skills />
       <EducationSection />
       <ExperienceSection />
       <Projects />
+      <Skills />
       <Testimonials />
       <Contact />
       {/* </main> */}
